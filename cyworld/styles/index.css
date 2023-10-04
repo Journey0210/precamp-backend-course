@@ -1,0 +1,96 @@
+* {
+  box-sizing: border-box;
+}
+ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+body {
+  background-image: url("/cyworld/images/outerBox.png");
+  padding: 20px 196px 20px 20px;
+}
+.container {
+  width: 848px;
+  height: 560px;
+  border-radius: 10px;
+  border: 1px solid #000;
+  background: #55b2d4;
+  padding: 24px 26px;
+}
+.dashedBorder {
+  border-radius: 10px;
+  border: 1px dashed #fff;
+  height: 100%;
+  width: 100%;
+  padding: 6px;
+}
+.innerBox {
+  width: 100%;
+  height: 100%;
+  border-radius: 10px;
+  border: 1px solid #000;
+  background: #eee;
+  padding: 44px 16px 12px 6px;
+  display: flex;
+  gap: 2px;
+  position: relative;
+  .wrapCount {
+    display: flex;
+    gap: 5px;
+    color: #55b2d4;
+    font-size: 10px;
+    position: absolute;
+    top: 23px;
+    left: 40px;
+  }
+  .title {
+    font-size: 16px;
+    color: #55b2d4;
+    font-weight: 700;
+    position: absolute;
+    left: 230px;
+    top: 0px;
+  }
+
+  .wrapper_left_body {
+    width: 244px;
+    border-radius: 10px;
+    border: 1px solid #999;
+    background: #fff;
+    padding: 20px 30px 31px;
+    position: relative;
+    .left_body_header {
+      background: #c4c4c4;
+      width: 100%;
+      height: 133px;
+    }
+    .imgUnderline {
+      border: 1px dotted #000;
+      margin-top: 12px;
+    }
+    .left_body_profile {
+      height: 190px;
+    }
+    .list {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding-bottom: 8px;
+    }
+    .left_body_footer {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      font-size: 11px;
+      /* position: absolute;
+        bottom:0; */
+    }
+  }
+}
+.right_body {
+  width: 100%;
+  border-radius: 10px;
+  border: 1px solid #999;
+  background: #fff;
+}

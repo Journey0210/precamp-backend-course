@@ -1,0 +1,40 @@
+* {
+  box-sizing: border-box;
+}
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.container {
+  width: 670px;
+  height: 960px;
+  border-radius: 20px;
+  border: 1px solid #aacdff;
+  background: #fff;
+  box-shadow: 7px 7px 39px 0px rgba(0, 104, 255, 0.25);
+  padding: 72px 100px;
+}
+h2 {
+  color: #0068ff;
+  font-weight: 700;
+  font-size: 32px;
+  margin-bottom: 60px;
+}
+p {
+  color: #797979;
+  font-size: 16px;
+}
+section {
+  display: flex;
+  justify-content: center;
+}
+input[type="text"] {
+  border: none;
+  border-bottom: 1px solid #cfcfcf;
+  width: 466px;
+}
+.pw {
+  border: 1px solid blue;
+}
