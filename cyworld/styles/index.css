@@ -10,6 +10,10 @@ body {
   background-image: url("/cyworld/images/outerBox.png");
   padding: 20px 196px 20px 20px;
 }
+h3,
+p {
+  margin: 0;
+}
 .container {
   width: 848px;
   height: 560px;
@@ -31,41 +35,70 @@ body {
   border-radius: 10px;
   border: 1px solid #000;
   background: #eee;
-  padding: 44px 16px 12px 6px;
+  padding: 0px 16px 12px 6px;
   display: flex;
+  flex-direction: column;
   gap: 2px;
-  position: relative;
-  .wrapCount {
+  /* position: relative; */
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: end;
+    padding: 15px 10px 0px 40px;
+    gap: 75px;
+  }
+  .wrapper_left_header {
     display: flex;
     gap: 5px;
     color: #55b2d4;
     font-size: 10px;
-    position: absolute;
-    top: 23px;
-    left: 40px;
+    padding-bottom: 7px;
+  }
+  .wrapper_right_header {
+    /* position: absolute;
+    left: 230px;
+    top: 0px; */
+    flex: 1;
+    display: flex;
+    justify-content: space-between;
   }
   .title {
     font-size: 16px;
     color: #55b2d4;
     font-weight: 700;
-    position: absolute;
-    left: 230px;
-    top: 0px;
+    padding-bottom: 8px;
+    font-family: "malgun";
   }
-
+  .private_mode {
+    display: flex;
+    align-items: center;
+    padding-bottom: 9px;
+  }
+  .private_mode > span {
+    color: #55b2d4;
+    font-family: PFStardust;
+    font-size: 13px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 16px;
+  }
+}
+.body {
+  display: flex;
+  gap: 2px;
   .wrapper_left_body {
     width: 244px;
     border-radius: 10px;
     border: 1px solid #999;
     background: #fff;
-    padding: 20px 30px 31px;
+    padding: 20px 30px 20px;
     position: relative;
     .left_body_header {
       background: #c4c4c4;
       width: 100%;
       height: 133px;
     }
-    .imgUnderline {
+    .img_under_line {
       border: 1px dotted #000;
       margin-top: 12px;
     }
@@ -87,10 +120,46 @@ body {
         bottom:0; */
     }
   }
+  .right_body {
+    width: 100%;
+    border-radius: 10px;
+    border: 1px solid #999;
+    background: #fff;
+    padding: 20px 30px;
+    .top_sub_title {
+      color: #55b2d4;
+      text-align: justify;
+      font-family: Malgun Gothic;
+      font-size: 13px;
+      font-style: normal;
+      font-weight: 700;
+      line-height: normal;
+    }
+    .today_story {
+      color: #000;
+      text-align: justify;
+      font-family: "scifibit";
+      font-size: 8px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: normal;
+      letter-spacing: -0.64px;
+    }
+  }
 }
-.right_body {
-  width: 100%;
-  border-radius: 10px;
-  border: 1px solid #999;
-  background: #fff;
+
+@font-face {
+  font-family: "PFStardust";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/PFStardust.woff")
+    format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: "scifibit";
+  src: url("../fonts/scifibit.ttf") format("truetype");
+}
+@font-face {
+  font-family: "malgun";
+  src: url("../fonts/malgun.ttf") format("truetype");
 }
