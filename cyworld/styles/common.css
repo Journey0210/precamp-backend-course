@@ -1,0 +1,53 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  line-height: 1;
+}
+
+.wrapper_header {
+  display: flex;
+  align-items: baseline;
+  gap: 5px;
+  .title {
+    color: #55b2d4;
+    text-align: justify;
+    font-family: "malgun";
+    font-size: 13px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+  }
+  .sub_title {
+    color: #000;
+    text-align: justify;
+    font-family: "scifibit";
+    font-size: 8px;
+    font-style: normal;
+    font-weight: 400;
+    letter-spacing: -0.64px;
+  }
+}
+.divider_line {
+  height: 1px;
+  background-color: #999;
+}
+@font-face {
+  font-family: "PFStardust";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/PFStardust.woff")
+    format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: "scifibit";
+  src: url("../fonts/scifibit.ttf") format("truetype");
+}
+@font-face {
+  font-family: "malgun";
+  src: url("../fonts/malgun.ttf") format("truetype");
+}
+@font-face {
+  font-family: "malgun_bold";
+  src: url("../fonts/malgunbd.ttf") format("truetype");
+}
