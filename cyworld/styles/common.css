@@ -29,6 +29,7 @@
   }
 }
 .divider_line {
+  margin: 10px 0px 20px;
   height: 1px;
   background-color: #999;
 }

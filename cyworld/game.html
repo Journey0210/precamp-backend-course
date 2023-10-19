@@ -4,6 +4,7 @@
     <title>Document</title>
     <link href="./styles/game.css" rel="stylesheet " />
     <link href="./styles/common.css" rel="stylesheet " />
+    <script src="./game.js"></script>
   </head>
   <body>
     <div class="wrapper">
@@ -16,17 +17,22 @@
         <div class="game_box">
           <img src="./icons/train.svg" />
           <span class="game_title">끝말잇기</span>
-          <p class="gray_text game_word">제시어: 뉴비즈코드</p>
+          <p class="gray_text game_word">
+            제시어: <span id="startWord">뉴비즈코드</span>
+          </p>
           <div class="input_wrapper">
             <input
-              class="input"
+              id="insertWord"
+              class="input_word"
               type="text"
               name=""
               placeholder="단어를 입력하세요."
             />
-            <button class="input_btn">검색</button>
+            <button id="search" class="input_btn" onclick="search()">
+              검색
+            </button>
           </div>
-          <p class="gray_text game_result">결과!</p>
+          <p id="result" class="gray_text game_result">결과!</p>
         </div>
         <div class="game_box">
           <img src="./icons/lotto.svg" />
@@ -40,7 +46,7 @@
             <span class="lotto_num">38</span>
             <span class="lotto_num">38</span>
           </div>
-          <button class="lotto_btn">Button</button>
+          <button class="lotto_btn">추첨</button>
         </div>
       </div>
     </div>
