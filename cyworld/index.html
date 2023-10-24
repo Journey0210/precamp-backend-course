@@ -8,6 +8,7 @@
       src="https://kit.fontawesome.com/f93e5be533.js"
       crossorigin="anonymous"
     ></script>
+    <script src="./index.js"></script>
   </head>
   <body>
     <div class="container">
@@ -61,7 +62,31 @@
               </div>
             </section>
             <section class="wrapper_right_body">
-              <iframe src="./jukebox.html"></iframe>
+              <iframe id="contentFrame" src="./home.html"></iframe>
+            </section>
+            <!-- 네비게이션 -->
+            <section class="navigation">
+              <div
+                class="navigation_item"
+                id="menuHome"
+                onclick="clickMenuHome()"
+              >
+                홈
+              </div>
+              <div
+                class="navigation_item"
+                id="menuJukebox"
+                onclick="clickMenuJukebox()"
+              >
+                쥬크박스
+              </div>
+              <div
+                class="navigation_item"
+                id="menuGame"
+                onclick="clickMenuGame()"
+              >
+                게임
+              </div>
             </section>
           </div>
         </div>
