@@ -3,6 +3,12 @@
   padding: 0;
   box-sizing: border-box;
 }
+input {
+  padding: 13px;
+}
+button {
+  cursor: pointer;
+}
 body {
   display: flex;
   justify-content: center;
@@ -11,7 +17,8 @@ body {
 }
 .container {
   width: 500px;
-  height: 920px;
+  height: 100vh;
+  overflow-y: scroll;
   border-radius: 20px;
   border: 1px solid #aacdff;
   background: #fff;
@@ -75,10 +82,19 @@ body {
     }
     .send_auth {
       color: #0068ff;
+      &:disabled {
+        cursor: unset;
+        color: #d2d2d2;
+      }
     }
     .auth_complete {
       background-color: #0068ff;
       color: white;
+
+      &:disabled {
+        cursor: unset;
+        background: #d2d2d2;
+      }
     }
   }
   .region_wrapper {
@@ -99,9 +115,21 @@ body {
     background: #fff;
     width: 100%;
     color: #0068ff;
-    height: 75px;
+    height: 60px;
+    margin-bottom: 20px;
     font-size: 18px;
     margin-top: 20px;
+    &:disabled {
+      background-color: #eee;
+      border: 1px solid #d2d2d2;
+      color: #d2d2d2;
+      cursor: unset;
+    }
+  }
+  .error {
+    color: red;
+    text-align: center;
+    display: none;
   }
 }
 select {
