@@ -1,6 +1,6 @@
 const messageContainer = document.querySelector("#d-day-message");
 const container = document.querySelector("#d-day-container");
-
+container.style.display = "none";
 messageContainer.style.color = "red";
 messageContainer.innerHTML = "<h3>D-day를 입력해주세요.</h3>";
 
@@ -20,11 +20,17 @@ const counterMaker = function () {
 
   //만약 Remaining이 0이라면, 타이머가 종료되었습니다 출력
   if (remaining <= 0) {
+    container.style.display = "none";
     messageContainer.innerHTML = "<h3>타이머가 종료되었습니다.</h3>";
+    messageContainer.style.display = "flex";
+    return; //counterMaker 함수 종료
   }
   //만약 잘못한 날짜가 들어왔다면, 유효한 시간대가 아닙니다 출력.
   else if (isNaN(remaining)) {
+    container.style.display = "none";
     messageContainer.innerHTML = "<h3>유효한 시간대가 아닙니다</h3>";
+    messageContainer.style.display = "flex";
+    return;
   }
 
   //기존 코드
@@ -47,12 +53,25 @@ const counterMaker = function () {
     remainingSec: Math.floor(remaining) % 60,
   };
 
-  const documentObj = {
-    days: document.getElementById("days"),
-    hours: document.getElementById("hours"),
-    min: document.getElementById("min"),
-    sec: document.getElementById("sec"),
-  };
+  // const documentObj = {
+  //   days: document.getElementById("days"),
+  //   hours: document.getElementById("hours"),
+  //   min: document.getElementById("min"),
+  //   sec: document.getElementById("sec"),
+  // };
+
+  const documentArr = ["days", "hours", "min", "sec"];
+  // for (let i = 0; i < documentArr.length; i++) {
+  //   documentObj[documentArr[i]] = document.getElementById(documentArr[i]);
+  // }
+  const timeKeys = Object.keys(remainingObj); //object의 key만 가져와서 배열로 반환
+
+  let j = 0;
+  for (const tag of documentArr) {
+    //for of 문 배열에서 사용. 베열을 돌며 요소를 출력
+    document.getElementById(tag).textContent = remainingObj[timeKeys[j]];
+    j++;
+  }
 
   //기존 코드
   // documentObj["days"].textContent = remainingObj["remainingDate"];
@@ -61,10 +80,22 @@ const counterMaker = function () {
   // documentObj["sec"].textContent = remainingObj["remainingSec"];
 
   //리팩토링 코드 (반복문 사용)
-  const timeKeys = Object.keys(remainingObj); //object의 key만 가져와서 배열로 반환
-  const documentKeys = Object.keys(documentObj);
 
-  for (let i = 0; i < timeKeys.length; i++) {
-    documentObj[documentKeys[i]].textContent = remainingObj[timeKeys[i]];
-  }
+  // for (let i = 0; i < timeKeys.length; i++) {
+  //   documentObj[documentKeys[i]].textContent = remainingObj[timeKeys[i]];
+  // }
+
+  // let i = 0;
+  // for (const key in documentObj) {
+  //   //for in 문은 객체에 사용. 객체를 돌며 key를 반환
+  //   console.log(remainingObj[timeKeys[i]]);
+  //   documentObj[key].textContent = remainingObj[timeKeys[i]];
+  //   i++;
+  // };
+};
+
+const starter = () => {
+  container.style.display = "flex";
+  messageContainer.style.display = "none";
+  counterMaker();
 };
