@@ -17,19 +17,22 @@ const counterMaker = function () {
   const nowDate = new Date();
   const targetDate = new Date(targetDateInput).setHours(0, 0, 0, 0); //.setHours(0,0,0,0) 자정을 기준으로 계산
   const remaining = (targetDate - nowDate) / 1000;
+  console.log("반복 실행중");
 
   //만약 Remaining이 0이라면, 타이머가 종료되었습니다 출력
   if (remaining <= 0) {
     container.style.display = "none";
     messageContainer.innerHTML = "<h3>타이머가 종료되었습니다.</h3>";
     messageContainer.style.display = "flex";
-    return; //counterMaker 함수 종료
+    setClearInterval(); //setInterval(counterMaker, 1000) 종료
+    return; //counterMaker 함수  종료
   }
   //만약 잘못한 날짜가 들어왔다면, 유효한 시간대가 아닙니다 출력.
   else if (isNaN(remaining)) {
     container.style.display = "none";
     messageContainer.innerHTML = "<h3>유효한 시간대가 아닙니다</h3>";
     messageContainer.style.display = "flex";
+    setClearInterval();
     return;
   }
 
@@ -94,8 +97,22 @@ const counterMaker = function () {
   // };
 };
 
+const intervalIdArr = [];
 const starter = () => {
   container.style.display = "flex";
   messageContainer.style.display = "none";
+
   counterMaker();
+  const intervalId = setInterval(counterMaker, 1000); //매초 마다 시간이 업데이트 , setInterval은 intervalId를 반환
+  intervalIdArr.push(intervalId);
+  console.log(intervalIdArr);
+};
+
+const setClearInterval = () => {
+  container.style.display = "none";
+  messageContainer.innerHTML = "<h3>D-day를 입력해주세요.</h3>";
+  messageContainer.style.display = "flex";
+  for (i = 0; i < intervalIdArr.length; i++) {
+    clearInterval(intervalIdArr[i]);
+  }
 };
