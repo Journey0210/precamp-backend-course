@@ -71,9 +71,11 @@ const weatherSearch = (positionObj) => {
   // https(protocol)://api.openweathermap.org(domain)/data/3.0/onecall(path)?lat={lat}&lon={lon}&exclude={part}&appid={API key}(parameter)
 
   const openWeatherRes = fetch(
-    `https://api.openweathermap.org/data/2.5/onecall?lat=${positionObj.latitude}&lon=${positionObj.longitude}&appid=fffcdc2e4955456dba443b33d52b5e20`
-  );
-  console.log(openWeatherRes);
+    `https://api.openweathermap.org/data/2.5/weather?lat=${positionObj.latitude}&lon=${positionObj.longitude}&appid=fffcdc2e4955456dba443b33d52b5e20`
+  )
+    .then((res) => res.json()) //response로 body값만 내려오는 것이 아니라 header까지 포함한 데이터가 들어오는 경우 JSON.parse() 대신 .josn()을 사용한다.
+    .then((json) => console.log(json.name, json.weather[0].description))
+    .catch((err) => console.log(err)); //error가 발생하면 catch로 넘어오고, 정상값이 내려오면 catch로 내려오지 않는다.
 };
 const accessToGeo = (position) => {
   const positionObj = {
@@ -90,3 +92,13 @@ const askForLocation = () => {
 };
 
 askForLocation();
+
+// const promiseTest = function () {
+//   return new Promise((resolver, reject) => {
+//     setTimeout(() => {
+//       resolver(100);
+//     }, 2000);
+//   });
+// };
+
+// console.log(promiseTest().then((res) => console.log(res)));
