@@ -34,7 +34,8 @@ const createTodo = (storageData) => {
 };
 
 const keyCodeCheck = () => {
-  if (window.event.keyCode === 13 && todoInput.value !== "") {
+  if (window.event.keyCode === 13 && todoInput.value.trim() !== "") {
+    // trim() 메서드를 사용함으로써 공백만 있는 경우 실행되지 않도록 추가 설정
     createTodo();
   }
 };
