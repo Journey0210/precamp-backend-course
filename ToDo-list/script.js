@@ -1,7 +1,7 @@
 let todoInput = document.querySelector("#todo-input");
 const todoList = document.querySelector("#todo-list");
-
 const savedTodoList = JSON.parse(localStorage.getItem("savedItems"));
+const savedWeatherData = JSON.parse(localStorage.getItem("saved-weather"));
 
 const createTodo = (storageData) => {
   let todoContents = todoInput.value;
@@ -68,21 +68,60 @@ if (savedTodoList) {
   savedTodoList.forEach((ele) => createTodo(ele));
 }
 
-const weatherSearch = (positionObj) => {
+const weatherDataActive = ({ location, weather }) => {
+  const weatherMainList = [
+    "Clear",
+    "Clouds",
+    "Drizzle",
+    "Fog",
+    "Rain",
+    "Snow",
+    "Thunderstorm",
+  ];
+  weather = weatherMainList?.includes(weather) ? weather : "Fog"; //기본 이미지 Fog로
+
+  const locationNameTag = document.getElementById("location-name-tag");
+
+  locationNameTag.textContent = location;
+  document.body.style.backgroundImage = `url("./images/${weather}.jpg")`;
+  if (
+    !savedWeatherData ||
+    savedWeatherData.location !== location ||
+    savedWeatherData.weather !== weather
+  ) {
+    console.log("조건식 성립");
+    localStorage.setItem(
+      "saved-weather",
+      JSON.stringify({ location, weather })
+    );
+  }
+};
+
+const weatherSearch = ({ latitude, longitude }) => {
   // https(protocol)://api.openweathermap.org(domain)/data/3.0/onecall(path)?lat={lat}&lon={lon}&exclude={part}&appid={API key}(parameter)
 
   const openWeatherRes = fetch(
-    `https://api.openweathermap.org/data/2.5/weather?lat=${positionObj.latitude}&lon=${positionObj.longitude}&appid=fffcdc2e4955456dba443b33d52b5e20`
+    `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=fffcdc2e4955456dba443b33d52b5e20`
   )
     .then((res) => res.json()) //response로 body값만 내려오는 것이 아니라 header까지 포함한 데이터가 들어오는 경우 JSON.parse() 대신 .josn()을 사용한다.
-    .then((json) => console.log(json.name, json.weather[0].description))
+    .then((json) => {
+      console.log(json.name, json.weather[0].main);
+      const weatherData = {
+        location: json.name,
+        weather: json.weather[0].main,
+      };
+      weatherDataActive(weatherData);
+    })
     .catch((err) => console.log(err)); //error가 발생하면 catch로 넘어오고, 정상값이 내려오면 catch로 내려오지 않는다.
 };
-const accessToGeo = (position) => {
+const accessToGeo = ({ coords }) => {
+  const { latitude, longitude } = coords; //구조분해할당
+  //shorthand property
   const positionObj = {
-    latitude: position.coords.latitude,
-    longitude: position.coords.longitude,
+    latitude,
+    longitude,
   };
+
   weatherSearch(positionObj);
 };
 
@@ -94,12 +133,6 @@ const askForLocation = () => {
 
 askForLocation();
 
-// const promiseTest = function () {
-//   return new Promise((resolver, reject) => {
-//     setTimeout(() => {
-//       resolver(100);
-//     }, 2000);
-//   });
-// };
-
-// console.log(promiseTest().then((res) => console.log(res)));
+if (savedWeatherData) {
+  weatherDataActive(savedWeatherData);
+}
